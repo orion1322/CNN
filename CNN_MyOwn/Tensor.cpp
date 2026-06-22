@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 class Tensor {
 private:
 	vector<int> shape;
@@ -16,16 +15,20 @@ public:
 		shape = {0, 0, 0, 0};
 		data = {};
 	}
-	Tensor(int a, int b, int c, int d) {
-		shape = { a, b, c, d };
-		int size = a * b * c * d;
+	Tensor(const vector<int>& new_shape) {
+		shape = new_shape;
+		int size = 1;
+		for (int i = 0; i < shape.size(); i++) {
+			size *= shape[i];
+		}
+		data.clear();
 		for (int i = 0; i < size; i++) {
 			data.push_back(rand() % 10);
 		}
 	}
 
 	void print() {
-		cout << "Размерность: [";
+		cout << "\nРазмерность: [";
 		for (int i = 0; i < shape.size(); i++) {
 			cout << shape[i];
 			if (i < shape.size() - 1) {
@@ -43,15 +46,66 @@ public:
 		}
 		cout << "}\n";
 	}
-
-	float& getValue(int a, int b, int c, int d) {
-		int index = ((a * shape[1] + b) * shape[2] + c) * shape[3] + d;
+	float getValue(int batch, int channel, int height, int width) const {
+		int index = ((batch * shape[1] + channel) * shape[2] + height) * shape[3] + width;
 		if (data.size() > index && index >= 0) {
-			cout << "Индекс: " << index << "\n";
+			//cout << "Индекс: " << index << "\n";
 			return data[index];
 		}
 		else {
 			throw runtime_error("Такого индекса нет!");
 		}
 	}
+	void reshape(const vector<int>& new_shape) {
+		int old_size = 1;
+		for (int i = 0; i < shape.size(); i++) {
+			old_size *= shape[i];
+		}
+		int new_size = 1;
+		for (int i = 0; i < new_shape.size(); i++) {
+			new_size *= new_shape[i];
+		}
+		if (old_size != new_size) {
+			throw runtime_error("Размерность не совпадает!");
+		}
+		shape = new_shape;
+	}
+	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
 };
+
+inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) {
+	int batch = tensor.shape[0];
+	int channel = tensor.shape[1];
+	int height = tensor.shape[2];
+	int width = tensor.shape[3];
+
+	int count_vert = (height + 2 * padding - size_kernel) / stride + 1; // Кол-во проходов фильтра по вертикали изображения
+	int count_hor = (width + 2 * padding - size_kernel) / stride + 1;   // Кол-во проходов фильтра по горизонтали изображения
+
+	int rows = channel * size_kernel * size_kernel;
+	int cols = count_vert * count_hor * batch;
+	Tensor mat({ rows, cols });
+
+	for (int b = 0; b < batch; b++) {
+		for (int h = 0; h < count_vert; h++) {
+			for (int w = 0; w < count_hor; w++) {
+				int col_index = (b * count_vert + h) * count_hor + w;  // Номер столбца от 0 до 8
+				for (int c = 0; c < channel; c++) {
+					for (int kh = 0; kh < size_kernel; kh++) {
+						for (int kw = 0; kw < size_kernel; kw++) {
+							int h_in = h * stride + kh - padding;
+							int w_in = w * stride + kw - padding;
+							float val = 0;
+							if (h_in >= 0 && h_in < height && w_in >= 0 && w_in < width) {
+								float val = tensor.getValue(b, c, h_in, w_in);
+							}
+							int row_index = kh * size_kernel + kw;     // Номер строки от 0 до 3
+							mat.data[row_index * cols + col_index] = val;
+						}
+					}
+				}
+			}
+		}
+	}
+	return mat;
+}
