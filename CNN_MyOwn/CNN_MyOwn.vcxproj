@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConvLayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tensor.cpp" />
   </ItemGroup>

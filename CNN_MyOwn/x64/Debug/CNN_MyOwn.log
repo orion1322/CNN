@@ -1,9 +1,9 @@
 ﻿  main.cpp
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,26): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,26): warning C4244:         with
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,26): warning C4244:         [
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,26): warning C4244:             _Ty=float
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,26): warning C4244:         ]
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(27,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(27,25): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(27,25): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(27,25): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(27,25): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
   CNN_MyOwn.vcxproj -> C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\x64\Debug\CNN_MyOwn.exe

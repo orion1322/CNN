@@ -22,8 +22,9 @@ public:
 			size *= shape[i];
 		}
 		data.clear();
+		//data.resize(size);
 		for (int i = 0; i < size; i++) {
-			data.push_back(rand() % 10);
+			data.push_back(rand()%10);
 		}
 	}
 
@@ -70,10 +71,18 @@ public:
 		}
 		shape = new_shape;
 	}
+	vector<int>& getShape() {
+		return shape;
+	}
+	vector<float>& getData() {
+		return data;
+	}
+	
 	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
+	friend Tensor matMul(Tensor& tensor);
 };
 
-inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) {
+inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Доработать для разных размерностей тензора
 	int batch = tensor.shape[0];
 	int channel = tensor.shape[1];
 	int height = tensor.shape[2];
@@ -95,12 +104,12 @@ inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int pa
 						for (int kw = 0; kw < size_kernel; kw++) {
 							int h_in = h * stride + kh - padding;
 							int w_in = w * stride + kw - padding;
-							float val = 0;
+							float value = 0;
 							if (h_in >= 0 && h_in < height && w_in >= 0 && w_in < width) {
-								float val = tensor.getValue(b, c, h_in, w_in);
+								value = tensor.getValue(b, c, h_in, w_in);
 							}
 							int row_index = kh * size_kernel + kw;     // Номер строки от 0 до 3
-							mat.data[row_index * cols + col_index] = val;
+							mat.data[row_index * cols + col_index] = value;
 						}
 					}
 				}
@@ -108,4 +117,29 @@ inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int pa
 		}
 	}
 	return mat;
+}
+inline Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
+	vector<int> tensorA_2d = tensorA.getShape();
+	vector<int> tensorB_2d = tensorB.getShape();
+	if (tensorA_2d.size() == 2 && tensorB_2d.size() == 2 && tensorA_2d[1] == tensorB_2d[0]) {
+		int I = tensorA_2d[0];
+		int J = tensorA_2d[1];
+		int K = tensorB_2d[1];
+		Tensor result({ I, K });
+		vector<float>& dataA = tensorA.getData();
+		vector<float>& dataB = tensorB.getData();
+		vector<float>& dataRes = result.getData();
+
+		for (int i = 0; i < I; i++) {
+			for (int j = 0; j < J; j++) {
+				for (int k = 0; k < K; k++) {
+					dataRes[i * K + k] += dataA[i * J + j] * dataB[j * K + k];
+				}
+			}
+		}
+		return result;
+	}
+	else {
+		throw runtime_error("Несоответствие размеров тензоров!");
+	}
 }

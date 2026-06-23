@@ -23,5 +23,14 @@ int main() {
     cout << "\nМатрица col:";
     mat.print();
 
+	Tensor A({ 2, 3 });
+	A.print();
+	Tensor B({ 3, 2 });
+	B.print();
+	Tensor C({0});
+	C.print();
+	C = matMul(A, B);
+	C.print();
+
 	return 0;
 }
