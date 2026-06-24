@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -29,7 +29,7 @@ public:
 	}
 
 	void print() {
-		cout << "\nРазмерность: [";
+		cout << "\nР Р°Р·РјРµСЂРЅРѕСЃС‚СЊ: [";
 		for (int i = 0; i < shape.size(); i++) {
 			cout << shape[i];
 			if (i < shape.size() - 1) {
@@ -38,7 +38,7 @@ public:
 		}
 		cout << "]";
 
-		cout << "\nДанные: {";
+		cout << "\nР”Р°РЅРЅС‹Рµ: {";
 		for (int i = 0; i < data.size(); i++) {
 			cout << data[i] ;
 			if (i < data.size() - 1) {
@@ -50,14 +50,14 @@ public:
 	float getValue(int batch, int channel, int height, int width) const {
 		int index = ((batch * shape[1] + channel) * shape[2] + height) * shape[3] + width;
 		if (data.size() > index && index >= 0) {
-			//cout << "Индекс: " << index << "\n";
+			//cout << "РРЅРґРµРєСЃ: " << index << "\n";
 			return data[index];
 		}
 		else {
-			throw runtime_error("Такого индекса нет!");
+			throw runtime_error("РўР°РєРѕРіРѕ РёРЅРґРµРєСЃР° РЅРµС‚!");
 		}
 	}
-	void reshape(const vector<int>& new_shape) {
+	Tensor reshape(const vector<int>& new_shape) {
 		int old_size = 1;
 		for (int i = 0; i < shape.size(); i++) {
 			old_size *= shape[i];
@@ -67,9 +67,9 @@ public:
 			new_size *= new_shape[i];
 		}
 		if (old_size != new_size) {
-			throw runtime_error("Размерность не совпадает!");
+			throw runtime_error("Р Р°Р·РјРµСЂРЅРѕСЃС‚СЊ РЅРµ СЃРѕРІРїР°РґР°РµС‚!");
 		}
-		shape = new_shape;
+		return Tensor({new_shape});
 	}
 	vector<int>& getShape() {
 		return shape;
@@ -82,14 +82,14 @@ public:
 	friend Tensor matMul(Tensor& tensor);
 };
 
-inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Доработать для разных размерностей тензора
+inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Р”РѕСЂР°Р±РѕС‚Р°С‚СЊ РґР»СЏ СЂР°Р·РЅС‹С… СЂР°Р·РјРµСЂРЅРѕСЃС‚РµР№ С‚РµРЅР·РѕСЂР°
 	int batch = tensor.shape[0];
 	int channel = tensor.shape[1];
 	int height = tensor.shape[2];
 	int width = tensor.shape[3];
 
-	int count_vert = (height + 2 * padding - size_kernel) / stride + 1; // Кол-во проходов фильтра по вертикали изображения
-	int count_hor = (width + 2 * padding - size_kernel) / stride + 1;   // Кол-во проходов фильтра по горизонтали изображения
+	int count_vert = (height + 2 * padding - size_kernel) / stride + 1; // РљРѕР»-РІРѕ РїСЂРѕС…РѕРґРѕРІ С„РёР»СЊС‚СЂР° РїРѕ РІРµСЂС‚РёРєР°Р»Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+	int count_hor = (width + 2 * padding - size_kernel) / stride + 1;   // РљРѕР»-РІРѕ РїСЂРѕС…РѕРґРѕРІ С„РёР»СЊС‚СЂР° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 
 	int rows = channel * size_kernel * size_kernel;
 	int cols = count_vert * count_hor * batch;
@@ -98,7 +98,7 @@ inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int pa
 	for (int b = 0; b < batch; b++) {
 		for (int h = 0; h < count_vert; h++) {
 			for (int w = 0; w < count_hor; w++) {
-				int col_index = (b * count_vert + h) * count_hor + w;  // Номер столбца от 0 до 8
+				int col_index = (b * count_vert + h) * count_hor + w;  // РќРѕРјРµСЂ СЃС‚РѕР»Р±С†Р° РѕС‚ 0 РґРѕ 8
 				for (int c = 0; c < channel; c++) {
 					for (int kh = 0; kh < size_kernel; kh++) {
 						for (int kw = 0; kw < size_kernel; kw++) {
@@ -108,7 +108,7 @@ inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int pa
 							if (h_in >= 0 && h_in < height && w_in >= 0 && w_in < width) {
 								value = tensor.getValue(b, c, h_in, w_in);
 							}
-							int row_index = kh * size_kernel + kw;     // Номер строки от 0 до 3
+							int row_index = kh * size_kernel + kw;     // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё РѕС‚ 0 РґРѕ 3
 							mat.data[row_index * cols + col_index] = value;
 						}
 					}
@@ -140,6 +140,6 @@ inline Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
 		return result;
 	}
 	else {
-		throw runtime_error("Несоответствие размеров тензоров!");
+		throw runtime_error("РќРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ СЂР°Р·РјРµСЂРѕРІ С‚РµРЅР·РѕСЂРѕРІ!");
 	}
 }
