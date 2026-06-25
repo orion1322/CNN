@@ -1,5 +1,8 @@
 ﻿#include <stdio.h>
-#include "ConvLayer.cpp"
+//#include "ConvLayer.cpp"
+//#include "ReLU.cpp"
+//#include "Tensor.cpp"
+#include "MaxPooling.cpp"
 #include <locale.h>
 #include <chrono>
 
@@ -22,13 +25,13 @@ int main() {
 	//t.reshape({1,3,4});
 	//t.print();
 
-    // Тест алгоритма imgToCol
+    // ========== ТЕСТ алгоритма imgToCol ==========
 	//Tensor mat;
 	//mat = imgToCol(t, 3, 1, 1);
 	//cout << "\nМатрица col:";
 	//mat.print();
 
-	// Тест умножения матриц
+	// =========== ТЕСТ умножения матриц ===========
 	//Tensor A({ 2, 3 });
 	//A.print();
 	//Tensor B({ 3, 2 });
@@ -38,20 +41,39 @@ int main() {
 	//C = matMul(A, B);
 	//C.print();
 
-	// Тест слоя свёртки
-	auto start = chrono::high_resolution_clock::now();
+	// ========== ТЕСТ слоя свёртки ==========
+	//auto start = chrono::high_resolution_clock::now();
+	//cout << "Создание слоя" << endl;
+	//ConvolutionalLayer conv(3, 16, 3, 1, 1);
+	//cout << "Создание входа" << endl;
+	//Tensor input({ 1, 3, 1024, 1024 });
+	//cout << "Вход создан" << endl;
+	//cout << "Запуск forward" << endl;
+	//Tensor output = conv.forward(input);
+	//auto end = chrono::high_resolution_clock::now();
+	//auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+	//cout << "Время выполнения: " << duration.count() << " мс" << endl;
 
-	cout << "Создание слоя" << endl;
-	ConvolutionalLayer conv(3, 16, 3, 1, 1);
-	cout << "Создание входа" << endl;
-	Tensor input({ 1, 3, 1024, 1024 });
-	cout << "Вход создан" << endl;
-	cout << "Запуск forward" << endl;
-	Tensor output = conv.forward(input);
+	// ========== ТЕСТ ReLU ==========
+	//Tensor input({ 1, 3, 2, 2 });
+	//input.fillTestData();
+	//input.print();
+	//ReLU ReLU;
+	//Tensor output = ReLU.forward(input);
+	//cout << "ReLU:";
+	//output.print();
 
-	auto end = chrono::high_resolution_clock::now();
-	auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-	cout << "Время выполнения: " << duration.count() << " мс" << endl;
+	// ========== ТЕСТ MaxPooling ==========
+	Tensor input({ 1, 1, 4, 4 });
+	input.fillTestData();
+	input.print();
+
+	MaxPooling pool;
+	Tensor output = pool.forward(input);
+	cout << "После MaxPooling:";
+	output.print();
+
+
 
 	return 0;
 }

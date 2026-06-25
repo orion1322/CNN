@@ -125,6 +125,8 @@
   <ItemGroup>
     <ClCompile Include="ConvLayer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaxPooling.cpp" />
+    <ClCompile Include="ReLU.cpp" />
     <ClCompile Include="Tensor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

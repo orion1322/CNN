@@ -22,12 +22,17 @@ public:
 			size *= shape[i];
 		}
 		data.clear();
-		//data.resize(size);
 		for (int i = 0; i < size; i++) {
 			data.push_back(rand()%10);
 		}
 	}
 
+	void fillTestData() {
+		float test_data[] = { 5, -2, 3, -1, 0, 8, -4, 6, -7, 2, -3, 9 };
+		for (int i = 0; i < data.size() && i < 12; i++) {
+			data[i] = test_data[i];
+		}
+	}
 	void print() {
 		cout << "\nРазмерность: [";
 		for (int i = 0; i < shape.size(); i++) {
