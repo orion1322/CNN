@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="ConvLayer.cpp" />
     <ClCompile Include="FullyConnected.cpp" />
+    <ClCompile Include="Loss.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaxPooling.cpp" />
     <ClCompile Include="ReLU.cpp" />

@@ -4,6 +4,7 @@
 #include "Tensor.h"
 #include "MaxPooling.cpp"
 #include "FullyConnected.cpp"
+#include "Loss.cpp"
 #include <locale.h>
 #include <chrono>
 
@@ -47,10 +48,11 @@ int main() {
 	//cout << "Создание слоя" << endl;
 	//ConvolutionalLayer conv(3, 16, 3, 1, 1);
 	//cout << "Создание входа" << endl;
-	//Tensor input({ 1, 3, 1024, 1024 });
+	//Tensor input({ 1, 3, 8, 8 });
 	//cout << "Вход создан" << endl;
 	//cout << "Запуск forward" << endl;
 	//Tensor output = conv.forward(input);
+	//output.print();
 	//auto end = chrono::high_resolution_clock::now();
 	//auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
 	//cout << "Время выполнения: " << duration.count() << " мс" << endl;
@@ -84,30 +86,47 @@ int main() {
 	//output.print();
 
 	// ======== ПОЛНЫЙ ТЕСТ ========
-	ConvolutionalLayer conv(3, 16, 3, 1, 1);
+	//ConvolutionalLayer conv(3, 16, 3, 1, 1);
+	//ReLU relu;
+	//MaxPooling pool;
+	//FullyConnected fc(16 * 8 * 8, 10);
+
+	//Tensor input({ 1,3,16,16 });
+	//cout << "Вход";
+	//input.print();
+
+	//Tensor output = conv.forward(input);
+	//cout << "После свёртки";
+	//output.print();
+
+	//output = relu.forward(output);
+	//cout << "Функия активации";
+	//output.print();
+
+	//output = pool.forward(output);
+	//cout << "Пулинг";
+	//output.print();
+
+	//output = fc.forward(output);
+	//cout << "После полносвязной сети";
+	//output.print();
+
+	// ======== TECT функции потерь ========
+	Tensor predictions({ 1,3 });
+	predictions.fillTestData();
+	predictions.print();
+	Tensor target({ 1,3 });
+	target.fillTestData();
 	ReLU relu;
-	MaxPooling pool;
-	FullyConnected fc(16 * 8 * 8, 10);
+	Tensor target2 = relu.forward(target);
+	target2.print();
 
-	Tensor input({ 1,3,16,16 });
-	cout << "Вход";
-	input.print();
+	FuncLoss loss;
 
-	Tensor output = conv.forward(input);
-	cout << "После свёртки";
-	output.print();
+	float result = loss.forward(predictions, target2);
+	cout << "MSE: " << result;
 
-	output = relu.forward(output);
-	cout << "Функия активации";
-	output.print();
 
-	output = pool.forward(output);
-	cout << "Пулинг";
-	output.print();
-
-	output = fc.forward(output);
-	cout << "После полносвязной сети";
-	output.print();
 
 
 	return 0;
