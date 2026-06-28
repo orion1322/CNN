@@ -2,7 +2,8 @@
 //#include "ConvLayer.cpp"
 //#include "ReLU.cpp"
 //#include "Tensor.cpp"
-#include "MaxPooling.cpp"
+//#include "MaxPooling.cpp"
+#include "FullyConnected.cpp"
 #include <locale.h>
 #include <chrono>
 
@@ -64,15 +65,23 @@ int main() {
 	//output.print();
 
 	// ========== ТЕСТ MaxPooling ==========
-	Tensor input({ 1, 1, 4, 4 });
+	//Tensor input({ 1, 1, 4, 4 });
+	//input.fillTestData();
+	//input.print();
+
+	//MaxPooling pool;
+	//Tensor output = pool.forward(input);
+	//cout << "После MaxPooling:";
+	//output.print();
+
+	// ========= ТЕСТ полносвязного слоя =========
+	Tensor input({1,4});
 	input.fillTestData();
 	input.print();
 
-	MaxPooling pool;
-	Tensor output = pool.forward(input);
-	cout << "После MaxPooling:";
+	FullyConnected fc(4, 3);
+	Tensor output = fc.forward(input);
 	output.print();
-
 
 
 	return 0;

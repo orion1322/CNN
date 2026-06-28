@@ -82,7 +82,23 @@ public:
 	vector<float>& getData() {
 		return data;
 	}
-	
+	Tensor transpose() {
+		if (shape.size() != 2) {
+			throw runtime_error("Транспонирование только для 2-мерных тензоров!");
+		}
+		else {
+			int cols = shape[1];
+			int rows = shape[0];
+			Tensor result({ cols,rows });
+
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					result.data[j * rows + i] = data[i * cols + j];
+				}
+			}
+			return result;
+		}
+	}
 	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
 	friend Tensor matMul(Tensor& tensor);
 };

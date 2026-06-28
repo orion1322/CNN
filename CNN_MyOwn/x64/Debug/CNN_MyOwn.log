@@ -1,4 +1,18 @@
-﻿  main.cpp
+﻿  FullyConnected.cpp
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         ]
+  (компиляция исходного файла "FullyConnected.cpp")
+  
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244: =: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         ]
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(22,18): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  main.cpp
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         with
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         [
@@ -6,4 +20,38 @@ C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): wa
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244: =: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(16,23): warning C4244:         ]
+  (компиляция исходного файла "main.cpp")
+  
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(22,18): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "main.cpp")
+  
+  MaxPooling.cpp
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         ]
+  (компиляция исходного файла "MaxPooling.cpp")
+  
+  ReLU.cpp
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         ]
+  (компиляция исходного файла "ReLU.cpp")
+  
+  Tensor.cpp
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244: аргумент: преобразование "int" в "_Ty", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         with
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         [
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:             _Ty=float
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\Tensor.cpp(26,25): warning C4244:         ]
+  Создание кода...
+  LINK : не найден или не выполнена сборка C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\x64\Debug\CNN_MyOwn.exe при последней инкрементной компоновке; выполняется полная компоновка
   CNN_MyOwn.vcxproj -> C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\x64\Debug\CNN_MyOwn.exe
