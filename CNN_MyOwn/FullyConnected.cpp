@@ -1,5 +1,5 @@
 ﻿#include <stdio.h>
-#include "Tensor.cpp"
+#include "Tensor.h"
 
 using namespace std;
 

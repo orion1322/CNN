@@ -1,8 +1,8 @@
 ﻿#include <stdio.h>
-//#include "ConvLayer.cpp"
-//#include "ReLU.cpp"
-//#include "Tensor.cpp"
-//#include "MaxPooling.cpp"
+#include "ConvLayer.cpp"
+#include "ReLU.cpp"
+#include "Tensor.h"
+#include "MaxPooling.cpp"
 #include "FullyConnected.cpp"
 #include <locale.h>
 #include <chrono>
@@ -75,12 +75,38 @@ int main() {
 	//output.print();
 
 	// ========= ТЕСТ полносвязного слоя =========
-	Tensor input({1,4});
-	input.fillTestData();
+	//Tensor input({1,4});
+	//input.fillTestData();
+	//input.print();
+
+	//FullyConnected fc(4, 3);
+	//Tensor output = fc.forward(input);
+	//output.print();
+
+	// ======== ПОЛНЫЙ ТЕСТ ========
+	ConvolutionalLayer conv(3, 16, 3, 1, 1);
+	ReLU relu;
+	MaxPooling pool;
+	FullyConnected fc(16 * 8 * 8, 10);
+
+	Tensor input({ 1,3,16,16 });
+	cout << "Вход";
 	input.print();
 
-	FullyConnected fc(4, 3);
-	Tensor output = fc.forward(input);
+	Tensor output = conv.forward(input);
+	cout << "После свёртки";
+	output.print();
+
+	output = relu.forward(output);
+	cout << "Функия активации";
+	output.print();
+
+	output = pool.forward(output);
+	cout << "Пулинг";
+	output.print();
+
+	output = fc.forward(output);
+	cout << "После полносвязной сети";
 	output.print();
 
 

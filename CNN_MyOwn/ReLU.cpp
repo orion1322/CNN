@@ -1,6 +1,6 @@
 ﻿#include <stdio.h>
 #include <math.h>
-#include "Tensor.cpp"
+#include "Tensor.h"
 
 using namespace std;
 

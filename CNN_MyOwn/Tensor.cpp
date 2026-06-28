@@ -2,20 +2,15 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include "Tensor.h"
 
 using namespace std;
 
-class Tensor {
-private:
-	vector<int> shape;
-	vector<float> data;
-
-public:
-	Tensor() {
+Tensor::Tensor() {
 		shape = {0, 0, 0, 0};
 		data = {};
 	}
-	Tensor(const vector<int>& new_shape) {
+Tensor::Tensor(const vector<int>& new_shape) {
 		shape = new_shape;
 		int size = 1;
 		for (int i = 0; i < shape.size(); i++) {
@@ -27,13 +22,13 @@ public:
 		}
 	}
 
-	void fillTestData() {
+void Tensor::fillTestData() {
 		float test_data[] = { 5, -2, 3, -1, 0, 8, -4, 6, -7, 2, -3, 9 };
 		for (int i = 0; i < data.size() && i < 12; i++) {
 			data[i] = test_data[i];
 		}
 	}
-	void print() {
+void Tensor::print() {
 		cout << "\nРазмерность: [";
 		for (int i = 0; i < shape.size(); i++) {
 			cout << shape[i];
@@ -52,7 +47,7 @@ public:
 		}
 		cout << "}\n";
 	}
-	float getValue(int batch, int channel, int height, int width) const {
+float Tensor::getValue(int batch, int channel, int height, int width) const {
 		int index = ((batch * shape[1] + channel) * shape[2] + height) * shape[3] + width;
 		if (data.size() > index && index >= 0) {
 			//cout << "Индекс: " << index << "\n";
@@ -62,7 +57,7 @@ public:
 			throw runtime_error("Такого индекса нет!");
 		}
 	}
-	Tensor reshape(const vector<int>& new_shape) {
+Tensor Tensor::reshape(const vector<int>& new_shape) {
 		int old_size = 1;
 		for (int i = 0; i < shape.size(); i++) {
 			old_size *= shape[i];
@@ -76,13 +71,13 @@ public:
 		}
 		return Tensor({new_shape});
 	}
-	vector<int>& getShape() {
+vector<int>& Tensor::getShape() {
 		return shape;
 	}
-	vector<float>& getData() {
+vector<float>& Tensor::getData() {
 		return data;
 	}
-	Tensor transpose() {
+Tensor Tensor::transpose() {
 		if (shape.size() != 2) {
 			throw runtime_error("Транспонирование только для 2-мерных тензоров!");
 		}
@@ -99,11 +94,8 @@ public:
 			return result;
 		}
 	}
-	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
-	friend Tensor matMul(Tensor& tensor);
-};
 
-inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Доработать для разных размерностей тензора
+Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Доработать для разных размерностей тензора
 	int batch = tensor.shape[0];
 	int channel = tensor.shape[1];
 	int height = tensor.shape[2];
@@ -139,7 +131,7 @@ inline Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int pa
 	}
 	return mat;
 }
-inline Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
+Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
 	vector<int> tensorA_2d = tensorA.getShape();
 	vector<int> tensorB_2d = tensorB.getShape();
 	if (tensorA_2d.size() == 2 && tensorB_2d.size() == 2 && tensorA_2d[1] == tensorB_2d[0]) {
