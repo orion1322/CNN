@@ -111,38 +111,48 @@ int main() {
 	//cout << "После полносвязной сети";
 	//output.print();
 
-	// ======== TECT функции потерь ========
-	FullyConnected fc({ 4,3 });
-	Tensor input({ 1,4 });
+	// ======== TECT полносвязной сети с 2мя слоями ========
+	srand(time(0));
+	FullyConnected fc1({ 4, 10 });
+	FullyConnected fc2({ 10, 3 });
+	Tensor input({ 1, 4 });
 	input.fillTestData();
 	input.print();
-	Tensor target({ 1,3 });
+	Tensor target({ 1, 3 });
 	target.fillTestData();
 	ReLU relu;
 	Tensor target2 = relu.forward(target);
 	target2.print();
 
 	FuncLoss loss;
-	float rate = 0.01;
-	for (int epoch = 0; epoch < 1000; epoch++) {
-		Tensor output = fc.forward(input);
+	float rate = 0.001;
+	for (int epoch = 0; epoch < 20; epoch++) {
+		Tensor out1 = fc1.forward(input);
+		Tensor out1_relu = relu.forward(out1);
+		Tensor out2 = fc2.forward(out1_relu);
 
-		float l = loss.forward(output, target);
+		float L = loss.forward(out2, target);
 
-		Tensor grad = loss.backward(output, target);
-		fc.backward(grad);
+		Tensor grad = loss.backward(out2, target);
+		Tensor grad2 = fc2.backward(grad);
+		Tensor grad1_relu = relu.backward(grad2);
+		fc1.backward(grad1_relu);
 
-		fc.update(rate);
-		fc.zeroGrad();
+		fc1.update(rate);
+		fc2.update(rate);
+		fc1.zeroGrad();
+		fc2.zeroGrad();
 
-		cout << "Epoch: "<< epoch << " Loss = " << l << endl;
+		cout << "Epoch: "<< epoch + 1 << " Loss = " << L << endl;
 	}
-	Tensor final_output = fc.forward(input);
-	cout << "\nФинальный выход:";
-	final_output.print();
+	Tensor out1 = fc1.forward(input);
+	Tensor out1_relu = relu.forward(out1);
+	Tensor out2 = fc2.forward(out1_relu);
 
-
-
+	cout << "Цель: ";
+	target.print();
+	cout << "Предсказание: ";
+	out2.print();
 
 	return 0;
 }

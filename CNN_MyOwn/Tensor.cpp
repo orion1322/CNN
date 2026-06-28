@@ -78,22 +78,22 @@ vector<float>& Tensor::getData() {
 		return data;
 	}
 Tensor Tensor::transpose() {
-		if (shape.size() != 2) {
-			throw runtime_error("Транспонирование только для 2-мерных тензоров!");
-		}
-		else {
-			int cols = shape[1];
-			int rows = shape[0];
-			Tensor result({ cols,rows });
-
-			for (int i = 0; i < rows; i++) {
-				for (int j = 0; j < cols; j++) {
-					result.data[j * rows + i] = data[i * cols + j];
-				}
-			}
-			return result;
-		}
+	if (shape.size() != 2) {
+		throw runtime_error("Транспонирование только для 2-мерных тензоров!");
 	}
+	else {
+		int cols = shape[1];
+		int rows = shape[0];
+		Tensor result({ cols,rows });
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				result.data[j * rows + i] = data[i * cols + j];
+			}
+		}
+		return result;
+	}
+}
 
 Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) { // Доработать для разных размерностей тензора
 	int batch = tensor.shape[0];
@@ -139,9 +139,12 @@ Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
 		int J = tensorA_2d[1];
 		int K = tensorB_2d[1];
 		Tensor result({ I, K });
+		vector<float>& dataRes = result.getData();
+		for (int i = 0; i < dataRes.size(); i++) {
+			dataRes[i] = 0;
+		}
 		vector<float>& dataA = tensorA.getData();
 		vector<float>& dataB = tensorB.getData();
-		vector<float>& dataRes = result.getData();
 
 		for (int i = 0; i < I; i++) {
 			for (int j = 0; j < J; j++) {

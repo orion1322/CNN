@@ -18,8 +18,9 @@ public:
 		padding = in_padding;
 		weights_kernel = Tensor({ counts_filters, RGB_channels, kernel_size, kernel_size });
 		vector<float>& weights_constr = weights_kernel.getData();
+		float scale = sqrt(2 / (RGB_channels * kernel_size * kernel_size)); //Xavier
 		for (int i = 0; i < weights_constr.size(); i++) {
-			weights_constr[i] = rand() % 10;
+			weights_constr[i] = ((float)rand() / RAND_MAX) * scale * 2 - scale;
 		}
 
 		bias = Tensor({ counts_filters });

@@ -23,8 +23,10 @@ public:
 		grad_bias = Tensor({ out_features });
 		weights = Tensor({out_feature, in_feature});
 		vector<float>& w_data = weights.getData();
+
+		float scale = sqrt(2 / in_features); // Xavier
 		for (int i = 0; i < w_data.size(); i++) {
-			w_data[i] = rand() % 10;
+			w_data[i] = ((float)rand() / RAND_MAX) * scale*2 - scale;
 		}
 
 		bias = Tensor({ out_features });
@@ -56,7 +58,7 @@ public:
 		vector<float>& grad_data = grad_output.getData();
 		vector<float>& grad_bias_data = grad_bias.getData();
 		for (int i = 0; i < out_features; i++) { // Градиент по смещению bias
-			grad_bias_data[i] += grad_data[i];
+			grad_bias_data[i] = grad_data[i]; // += накапливаем градиент | = перезаписываем
 		}
 		// Градиент для весов dw = grad_output^T * input
 		vector<float> cache_shape = cache.getData();
@@ -67,7 +69,7 @@ public:
 		vector<float>& grad_w_data = grad_w.getData();
 		vector<float>& grad_weights_data = grad_weights.getData();
 		for (int i = 0; i < grad_w_data.size(); i++) {
-			grad_weights_data[i] += grad_w_data[i];
+			grad_weights_data[i] = grad_w_data[i]; // += накапливаем градиент | = перезаписываем
 		}
 		// Градиаент для входа dInput = weights^T * grad_output^T
 		Tensor weights_T = weights.transpose();
