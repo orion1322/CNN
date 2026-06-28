@@ -112,9 +112,10 @@ int main() {
 	//output.print();
 
 	// ======== TECT функции потерь ========
-	Tensor predictions({ 1,3 });
-	predictions.fillTestData();
-	predictions.print();
+	FullyConnected fc({ 4,3 });
+	Tensor input({ 1,4 });
+	input.fillTestData();
+	input.print();
 	Tensor target({ 1,3 });
 	target.fillTestData();
 	ReLU relu;
@@ -122,9 +123,23 @@ int main() {
 	target2.print();
 
 	FuncLoss loss;
+	float rate = 0.01;
+	for (int epoch = 0; epoch < 1000; epoch++) {
+		Tensor output = fc.forward(input);
 
-	float result = loss.forward(predictions, target2);
-	cout << "MSE: " << result;
+		float l = loss.forward(output, target);
+
+		Tensor grad = loss.backward(output, target);
+		fc.backward(grad);
+
+		fc.update(rate);
+		fc.zeroGrad();
+
+		cout << "Epoch: "<< epoch << " Loss = " << l << endl;
+	}
+	Tensor final_output = fc.forward(input);
+	cout << "\nФинальный выход:";
+	final_output.print();
 
 
 
