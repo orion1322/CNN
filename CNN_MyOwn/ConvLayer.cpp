@@ -12,6 +12,7 @@ private:
 	int padding;
 
 public:
+	ConvolutionalLayer(){}
 	ConvolutionalLayer(int RGB_channels, int counts_filters, int kernel_size, int in_stride, int in_padding) {
 		size_kernel = kernel_size;
 		stride = in_stride;

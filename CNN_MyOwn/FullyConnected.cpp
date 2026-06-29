@@ -16,6 +16,7 @@ private:
 	int out_features;
 
 public:
+	FullyConnected(){}
 	FullyConnected(int in_feature, int out_feature) {
 		in_features = in_feature;
 		out_features = out_feature;

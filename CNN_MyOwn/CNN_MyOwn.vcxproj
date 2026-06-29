@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CNN.cpp" />
     <ClCompile Include="ConvLayer.cpp" />
     <ClCompile Include="FullyConnected.cpp" />
     <ClCompile Include="Loss.cpp" />
