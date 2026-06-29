@@ -17,12 +17,15 @@ public:
 	void fillTestData();
 	void print();
 	vector<int>& getShape();
+	const vector<int>& getShape() const;
 	vector<float>& getData();
+	const vector<float>& getData() const;
 	float getValue(int batch, int channels, int height, int width) const;
 	Tensor reshape(const vector<int>& new_shape);
 	Tensor transpose();
 
-	friend Tensor matMul(Tensor& tensorA, Tensor& tensorB);
+
 	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
-	friend Tensor colToImg(const Tensor& col, const vector<int> input_shape, int size_kernel, int stride, int padding);
+	friend Tensor matMul(Tensor& tensorA, Tensor& tensorB);
+	friend Tensor colToImg(const Tensor& col, const vector<int>& input_shape, int size_kernel, int stride, int padding);
 };

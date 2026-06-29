@@ -1,5 +1,5 @@
 ﻿  main.cpp
-C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\ConvLayer.cpp(27,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\ConvLayer.cpp(29,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\FullyConnected.cpp(28,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
@@ -18,7 +18,5 @@ C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\CNN.cpp(48,17): warni
   (компиляция исходного файла "main.cpp")
   
 C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\main.cpp(16,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  MaxPooling.cpp
-  ReLU.cpp
-  Создание кода...
+C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\CNN_MyOwn\main.cpp(164,13): warning C4305: инициализация: усечение из "double" в "float"
   CNN_MyOwn.vcxproj -> C:\Users\User\Desktop\CNN-диплом\CNN_MyOwn\x64\Debug\CNN_MyOwn.exe

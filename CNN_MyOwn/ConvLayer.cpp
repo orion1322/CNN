@@ -117,7 +117,7 @@ public:
 		Tensor weights_2d = weights_kernel.reshape({ out_channels, w_kernel_shape[1] * size_kernel * size_kernel });
 		Tensor weights_T = weights_2d.transpose();
 		Tensor grad_input_mat = matMul(weights_T, grad_2d);
-		vector<int>& cache_shape = cache.getShape();
+		const vector<int>& cache_shape = cache.getShape();
 		Tensor grad_input = colToImg(grad_input_mat, cache_shape, size_kernel, stride, padding);
 
 		return grad_input;

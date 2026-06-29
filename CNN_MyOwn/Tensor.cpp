@@ -74,9 +74,15 @@ Tensor Tensor::reshape(const vector<int>& new_shape) {
 vector<int>& Tensor::getShape() {
 		return shape;
 	}
+const vector<int>& Tensor::getShape() const {
+	return shape;
+}
 vector<float>& Tensor::getData() {
 		return data;
 	}
+const vector<float>& Tensor::getData() const { 
+	return data;
+}
 Tensor Tensor::transpose() {
 	if (shape.size() != 2) {
 		throw runtime_error("Транспонирование только для 2-мерных тензоров!");
@@ -132,7 +138,7 @@ Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) 
 	}
 	return mat;
 }
-Tensor colToImg(Tensor& col, const vector<int> input_shape, int size_kernel, int stride, int padding) {
+Tensor colToImg(const Tensor& col, const vector<int>& input_shape, int size_kernel, int stride, int padding) {
 	int batch = input_shape[0];
 	int channels = input_shape[1];
 	int height = input_shape[2];
@@ -142,7 +148,7 @@ Tensor colToImg(Tensor& col, const vector<int> input_shape, int size_kernel, int
 	int out_w = (width + 2 * padding - size_kernel) / stride + 1;
 	Tensor grad = Tensor(input_shape);
 	int cols = out_h * out_w * batch;
-	vector<float>& col_data = col.getData();
+	const vector<float>& col_data = col.getData();
 	vector<float>& grad_data = grad.getData();
 	for (int b = 0; b < batch; b++) {
 		for (int h = 0; h < out_h; h++) {

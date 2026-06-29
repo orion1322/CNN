@@ -54,17 +54,37 @@ public:
 
 		return output;
 	}
-	void backward(Tensor& grad_output) { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
+	void backward(Tensor& grad_output) {
 		Tensor grad = grad_output;
 		grad = fc2.backward(grad);
 		grad = fc_relu.backward(grad);
 		grad = fc1.backward(grad);
+
+		grad = grad.reshape({ 1, 64, 28, 28 });
+
+		grad = pool3.backward(grad);
+		grad = relu3.backward(grad);
+		grad = conv3.backward(grad);
+
+		grad = pool2.backward(grad);
+		grad = relu2.backward(grad);
+		grad = conv2.backward(grad);
+
+		grad = pool1.backward(grad);
+		grad = relu1.backward(grad);
+		grad = conv1.backward(grad);
 	}
-	void update(float rate) { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
+	void update(float rate) { 
+		conv1.update(rate);
+		conv2.update(rate);
+		conv3.update(rate);
 		fc1.update(rate);
 		fc2.update(rate);
 	}
-	void zeroGrad() { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
+	void zeroGrad() { 
+		conv1.zeroGrad();
+		conv2.zeroGrad();
+		conv3.zeroGrad();
 		fc1.zeroGrad();
 		fc2.zeroGrad();
 	}

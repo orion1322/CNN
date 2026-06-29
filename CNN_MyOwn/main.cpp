@@ -156,16 +156,24 @@ int main() {
 	//out2.print();
 
 	Network net;
-
+	FuncLoss loss;
+	cout << "Запуск" << endl;
 	Tensor input({ 1, 3, 224, 224 });
-	input.print();
+	Tensor target({ 1, 245 });
 
-	Tensor output = net.forward(input);
+	float rate = 0.01;
+	for (int epoch = 0; epoch < 10; epoch++) {
+		Tensor output = net.forward(input);
+		float L = loss.forward(output, target);
 
-	cout << "РЕЗУЛЬТАТ" << endl;
-	output.print();
+		Tensor grad = loss.backward(output, target);
+		net.backward(grad);
 
-	cout << "Ожидалось: 245 чисел" << endl;
+		net.update(rate);
+		net.zeroGrad();
+
+		cout << "Epoch " << epoch+1 << " Loss = " << L << endl;
+	}
 
 	return 0;
 }
