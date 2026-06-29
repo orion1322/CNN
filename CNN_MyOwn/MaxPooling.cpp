@@ -8,9 +8,12 @@ class MaxPooling {
 private:
 	int pool_size = 2;
 	int stride = 2;
+	Tensor cache;
 
 public:
+	MaxPooling(){}
 	Tensor forward(Tensor& tensor) {
+		cache = tensor;
 		vector<int> shape_tensor = tensor.getShape();
 		int batch = shape_tensor[0];
 		int channels = shape_tensor[1];
@@ -47,5 +50,7 @@ public:
 		}
 		return output;
 	}
-
+	Tensor backward(Tensor& grad_output) {
+		//ДОПИЛИТЬ
+	}
 };

@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\CNN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\CNN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Tensor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\Tensor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\ConvLayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\ConvLayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\FullyConnected.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\FullyConnected.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Tensor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\Tensor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -27,12 +19,20 @@
       "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\ReLU.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Loss.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\Loss.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\CNN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\CNN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\MaxPooling.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\MaxPooling.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\FullyConnected.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\FullyConnected.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Loss.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A0F8E60-7075-4CED-AEEB-977CD01E23D1}|CNN_MyOwn\\CNN_MyOwn.vcxproj|solutionrelative:CNN_MyOwn\\Loss.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,33 +54,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "CNN.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\CNN.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\CNN.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\CNN.cpp",
               "RelativeToolTip": "CNN_MyOwn\\CNN.cpp",
-              "ViewState": "AgIAACoAAAAAAAAAAAAswEAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswEIAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-29T13:15:53.346Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Tensor.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Tensor.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\Tensor.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Tensor.cpp",
               "RelativeToolTip": "CNN_MyOwn\\Tensor.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAIUAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-28T17:36:22.483Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Loss.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\Loss.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\Loss.cpp",
@@ -98,57 +98,59 @@
               "RelativeDocumentMoniker": "CNN_MyOwn\\ConvLayer.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\ConvLayer.cpp",
               "RelativeToolTip": "CNN_MyOwn\\ConvLayer.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAmwHYAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-28T15:45:00.742Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "MaxPooling.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\MaxPooling.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\MaxPooling.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\MaxPooling.cpp",
               "RelativeToolTip": "CNN_MyOwn\\MaxPooling.cpp",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAADUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-06-28T13:17:26.537Z"
+              "WhenOpened": "2026-06-28T13:17:26.537Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "FullyConnected.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\FullyConnected.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\FullyConnected.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\FullyConnected.cpp",
               "RelativeToolTip": "CNN_MyOwn\\FullyConnected.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-28T13:06:51.558Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ReLU.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\ReLU.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\ReLU.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\ReLU.cpp",
               "RelativeToolTip": "CNN_MyOwn\\ReLU.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBoAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-06-25T12:32:53.986Z"
+              "WhenOpened": "2026-06-25T12:32:53.986Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\main.cpp",
               "RelativeDocumentMoniker": "CNN_MyOwn\\main.cpp",
               "ToolTip": "C:\\Users\\User\\Desktop\\CNN-\u0434\u0438\u043F\u043B\u043E\u043C\\CNN_MyOwn\\CNN_MyOwn\\main.cpp",
               "RelativeToolTip": "CNN_MyOwn\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-06-22T13:53:43.88Z",
               "EditorCaption": ""

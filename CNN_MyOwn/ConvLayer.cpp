@@ -11,6 +11,13 @@ private:
 	int stride;
 	int padding;
 
+	// Параметры градиента
+	Tensor grad_weights;
+	Tensor grad_bias;
+	Tensor cache;
+	Tensor col_cache;
+
+
 public:
 	ConvolutionalLayer(){}
 	ConvolutionalLayer(int RGB_channels, int counts_filters, int kernel_size, int in_stride, int in_padding) {
@@ -29,9 +36,14 @@ public:
 		for (int i = 0; i < b_data.size(); i++) {
 			b_data[i] = 0;
 		}
+
+		grad_weights = Tensor({ counts_filters, RGB_channels, kernel_size, kernel_size });
+		grad_bias = Tensor({ counts_filters });
 	}
 	Tensor forward(Tensor& tensor) {
+		cache = tensor;
 		Tensor mat = imgToCol(tensor, size_kernel, stride, padding); // Преобразуем изображение в матрицу
+		col_cache = mat;
 
 		vector<int> w_shape = weights_kernel.getShape();
 		Tensor weights_2d = weights_kernel.reshape({ w_shape[0], w_shape[1] * w_shape[2] * w_shape[3] });
@@ -69,5 +81,70 @@ public:
 			}
 		}
 		return output;
+	}
+	Tensor backward(Tensor& grad_output) {
+		vector<int>& grad_shape = grad_output.getShape();
+		int batch = grad_shape[0];
+		int out_channels = grad_shape[1];
+		int out_h = grad_shape[2];
+		int out_w = grad_shape[3];
+		vector<float>& grad_bias_data = grad_bias.getData();
+		vector<float>& grad_data = grad_output.getData();
+		for (int c = 0; c < out_channels; c++) {
+			float sum = 0;
+			for (int b = 0; b < batch; b++) {
+				for (int h = 0; h < out_h; h++) {
+					for (int w = 0; w < out_w; w++) {
+						sum += grad_data[((b * out_channels + c) * out_h + h) * out_w + w];
+					}
+				}
+			}
+			grad_bias_data[c] += sum;
+		}
+		Tensor grad_2d = grad_output.reshape({ out_channels, out_h * out_w * batch });
+		// Градиент для весов dw = grad_output * col^T
+		Tensor col_T = col_cache.transpose();
+		Tensor grad_w = matMul(grad_2d, col_T);
+		vector<int>& w_kernel_shape = weights_kernel.getShape();
+		grad_w = grad_w.reshape({ out_channels, w_kernel_shape[1], size_kernel, size_kernel });
+
+		vector<float>& grad_w_data = grad_w.getData();
+		vector<float>& grad_weights_data = grad_weights.getData();
+		for (int i = 0; i < grad_w_data.size(); i++) {
+			grad_weights_data[i] += grad_w_data[i]; // += накопление градиентов | = перезаписывание градиентов
+		}
+		// Градиент для входа dInput = weights^T * grad_output
+		Tensor weights_2d = weights_kernel.reshape({ out_channels, w_kernel_shape[1] * size_kernel * size_kernel });
+		Tensor weights_T = weights_2d.transpose();
+		Tensor grad_input_mat = matMul(weights_T, grad_2d);
+		Tensor grad_input = colToImg(grad_input_mat, cache.shape, size_kernel, stride, padding);
+
+		return grad_input;
+
+	}
+	void zeroGrad() {
+		vector<float>& grad_w_data = grad_weights.getData();
+		for (int i = 0; i < grad_w_data.size(); i++) {
+			grad_w_data[i] = 0;
+		}
+
+		vector<float>& grad_b_data = grad_bias.getData();
+		for (int i = 0; i < grad_b_data.size(); i++) {
+			grad_b_data[i] = 0;
+		}
+	}
+	void update(float rate) {
+		// Обновление весов w = w - rate * dw
+		vector<float>& w_data = weights_kernel.getData();
+		vector<float>& grad_w_data = grad_weights.getData();
+		for (int i = 0; i < w_data.size(); i++) {
+			w_data[i] -= rate * grad_w_data[i];
+		}
+		// Обновление смещения bias
+		vector<float>& b_data = bias.getData();
+		vector<float>& grad_b_data = grad_bias.getData();
+		for (int i = 0; i < b_data.size(); i++) {
+			b_data[i] -= rate * grad_b_data[i];
+		}
 	}
 };

@@ -28,7 +28,7 @@ private:
 	FullyConnected fc2;
 
 public:
-	Network() {}
+	Network():conv1(3, 16, 3, 1, 1), conv2(16, 32, 3, 1, 1), conv3(32, 64, 3, 1, 1), fc1(64 * 28 * 28, 128), fc2(128, 7 * 7 * 5) {}
 	Tensor forward(Tensor& input) {
 		Tensor out;
 		// Первый свёрточный слой
@@ -54,15 +54,18 @@ public:
 
 		return output;
 	}
-	void backward(Tensor& grad_output) {
+	void backward(Tensor& grad_output) { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
 		Tensor grad = grad_output;
 		grad = fc2.backward(grad);
 		grad = fc_relu.backward(grad);
 		grad = fc1.backward(grad);
-
-		Tensor grad_flat = grad.reshape({ 1, 64, 28, 28 });
-
-	
-
+	}
+	void update(float rate) { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
+		fc1.update(rate);
+		fc2.update(rate);
+	}
+	void zeroGrad() { // ТОЛЬКО ДЛЯ ПОЛНОСВЯЗНОГО СЛОЯ / ДОПИЛИТЬ
+		fc1.zeroGrad();
+		fc2.zeroGrad();
 	}
 };

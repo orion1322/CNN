@@ -1,10 +1,11 @@
 ﻿#include <stdio.h>
-#include "ConvLayer.cpp"
-#include "ReLU.cpp"
-#include "Tensor.h"
-#include "MaxPooling.cpp"
-#include "FullyConnected.cpp"
-#include "Loss.cpp"
+//#include "ConvLayer.cpp"
+//#include "ReLU.cpp"
+//#include "Tensor.h"
+//#include "MaxPooling.cpp"
+//#include "FullyConnected.cpp"
+//#include "Loss.cpp"
+#include "CNN.cpp"
 #include <locale.h>
 #include <chrono>
 
@@ -12,7 +13,7 @@ using namespace std;
 
 int main() {
 	setlocale(LC_ALL, "rus");
-
+	srand(time(0));
 	// ============= ТЕСТЫ ============
 	
 	// Работа конструктора и вывода
@@ -112,47 +113,59 @@ int main() {
 	//output.print();
 
 	// ======== TECT полносвязной сети с 2мя слоями ========
-	srand(time(0));
-	FullyConnected fc1({ 4, 10 });
-	FullyConnected fc2({ 10, 3 });
-	Tensor input({ 1, 4 });
-	input.fillTestData();
+	//srand(time(0));
+	//FullyConnected fc1({ 4, 10 });
+	//FullyConnected fc2({ 10, 3 });
+	//Tensor input({ 1, 4 });
+	//input.fillTestData();
+	//input.print();
+	//Tensor target({ 1, 3 });
+	//target.fillTestData();
+	//ReLU relu;
+	//Tensor target2 = relu.forward(target);
+	//target2.print();
+
+	//FuncLoss loss;
+	//float rate = 0.001;
+	//for (int epoch = 0; epoch < 20; epoch++) {
+	//	Tensor out1 = fc1.forward(input);
+	//	Tensor out1_relu = relu.forward(out1);
+	//	Tensor out2 = fc2.forward(out1_relu);
+
+	//	float L = loss.forward(out2, target);
+
+	//	Tensor grad = loss.backward(out2, target);
+	//	Tensor grad2 = fc2.backward(grad);
+	//	Tensor grad1_relu = relu.backward(grad2);
+	//	fc1.backward(grad1_relu);
+
+	//	fc1.update(rate);
+	//	fc2.update(rate);
+	//	fc1.zeroGrad();
+	//	fc2.zeroGrad();
+
+	//	cout << "Epoch: "<< epoch + 1 << " Loss = " << L << endl;
+	//}
+	//Tensor out1 = fc1.forward(input);
+	//Tensor out1_relu = relu.forward(out1);
+	//Tensor out2 = fc2.forward(out1_relu);
+
+	//cout << "Цель: ";
+	//target.print();
+	//cout << "Предсказание: ";
+	//out2.print();
+
+	Network net;
+
+	Tensor input({ 1, 3, 224, 224 });
 	input.print();
-	Tensor target({ 1, 3 });
-	target.fillTestData();
-	ReLU relu;
-	Tensor target2 = relu.forward(target);
-	target2.print();
 
-	FuncLoss loss;
-	float rate = 0.001;
-	for (int epoch = 0; epoch < 20; epoch++) {
-		Tensor out1 = fc1.forward(input);
-		Tensor out1_relu = relu.forward(out1);
-		Tensor out2 = fc2.forward(out1_relu);
+	Tensor output = net.forward(input);
 
-		float L = loss.forward(out2, target);
+	cout << "РЕЗУЛЬТАТ" << endl;
+	output.print();
 
-		Tensor grad = loss.backward(out2, target);
-		Tensor grad2 = fc2.backward(grad);
-		Tensor grad1_relu = relu.backward(grad2);
-		fc1.backward(grad1_relu);
-
-		fc1.update(rate);
-		fc2.update(rate);
-		fc1.zeroGrad();
-		fc2.zeroGrad();
-
-		cout << "Epoch: "<< epoch + 1 << " Loss = " << L << endl;
-	}
-	Tensor out1 = fc1.forward(input);
-	Tensor out1_relu = relu.forward(out1);
-	Tensor out2 = fc2.forward(out1_relu);
-
-	cout << "Цель: ";
-	target.print();
-	cout << "Предсказание: ";
-	out2.print();
+	cout << "Ожидалось: 245 чисел" << endl;
 
 	return 0;
 }
