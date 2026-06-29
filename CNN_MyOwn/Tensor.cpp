@@ -107,6 +107,7 @@ Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) 
 	int rows = channel * size_kernel * size_kernel;
 	int cols = count_vert * count_hor * batch;
 	Tensor mat({ rows, cols });
+	vector<float>& mat_data = mat.getData();
 
 	for (int b = 0; b < batch; b++) {
 		for (int h = 0; h < count_vert; h++) {
@@ -122,7 +123,7 @@ Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) 
 								value = tensor.getValue(b, c, h_in, w_in);
 							}
 							int row_index = kh * size_kernel + kw;     // Номер строки от 0 до 3
-							mat.data[row_index * cols + col_index] = value;
+							mat_data[row_index * cols + col_index] = value;
 						}
 					}
 				}
@@ -130,6 +131,41 @@ Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding) 
 		}
 	}
 	return mat;
+}
+Tensor colToImg(Tensor& col, const vector<int> input_shape, int size_kernel, int stride, int padding) {
+	int batch = input_shape[0];
+	int channels = input_shape[1];
+	int height = input_shape[2];
+	int width = input_shape[3];
+
+	int out_h = (height + 2 * padding - size_kernel) / stride + 1;
+	int out_w = (width + 2 * padding - size_kernel) / stride + 1;
+	Tensor grad = Tensor(input_shape);
+	int cols = out_h * out_w * batch;
+	vector<float>& col_data = col.getData();
+	vector<float>& grad_data = grad.getData();
+	for (int b = 0; b < batch; b++) {
+		for (int h = 0; h < out_h; h++) {
+			for (int w = 0; w < out_w; w++) {
+				int col_idx = (b * out_h + h) * out_w + w;
+				for (int c = 0; c < channels; c++) {
+					for (int kh = 0; kh < size_kernel; kh++) {
+						for (int kw = 0; kw < size_kernel; kw++) {
+							int h_in = h * stride + kh - padding;
+							int w_in = w * stride + kw - padding;
+
+							if (h_in >= 0 && h_in < height && w_in >= 0 && w_in < width) {
+								int row_idx = (c * size_kernel + kh) * size_kernel + kw;
+								float value = col_data[row_idx * cols + col_idx];
+								grad_data[((b * channels + c) * height + h_in) * width + w_in] += value;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return grad;
 }
 Tensor matMul(Tensor& tensorA, Tensor& tensorB) {
 	vector<int> tensorA_2d = tensorA.getShape();

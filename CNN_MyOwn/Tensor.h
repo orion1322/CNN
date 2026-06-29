@@ -24,4 +24,5 @@ public:
 
 	friend Tensor matMul(Tensor& tensorA, Tensor& tensorB);
 	friend Tensor imgToCol(const Tensor& tensor, int size_kernel, int stride, int padding);
+	friend Tensor colToImg(const Tensor& col, const vector<int> input_shape, int size_kernel, int stride, int padding);
 };
